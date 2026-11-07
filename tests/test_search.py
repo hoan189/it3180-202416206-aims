@@ -33,6 +33,15 @@ class TestSearch(unittest.TestCase):
 
         self.assertEqual(len(result), 0)
 
+    def test_search_by_title_unicode_casefold(self):
+        dvds = [
+            DigitalVideoDisc("Straße", "Drama", "Director", 100, 10)
+        ]
+
+        result = search_by_title(dvds, "STRASSE")
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].title, "Straße")
 
 if __name__ == "__main__":
     unittest.main()
