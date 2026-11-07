@@ -8,5 +8,5 @@ def search_by_category(dvds, category):
 def search_by_title(dvds, title):
     return [
         dvd for dvd in dvds
-        if title.lower() in dvd.title.lower()
+        if title.casefold() in dvd.title.casefold()
     ]
