@@ -4,17 +4,18 @@ from aims.dvd import DigitalVideoDisc
 
 
 class TestSearch(unittest.TestCase):
-    def test_search_by_title(self):
-        dvds = [
+
+    def setUp(self):
+        self.dvds = [
             DigitalVideoDisc("The Lion King", "Animation", "Roger", 100, 10),
             DigitalVideoDisc("Frozen", "Animation", "Chris", 90, 10),
         ]
 
-        result = search_by_title(dvds, "lion")
+    def test_search_by_title(self):
+        result = search_by_title(self.dvds, "lion")
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0].title, "The Lion King")
-
 
     def test_search_by_title_uppercase(self):
         result = search_by_title(self.dvds, "LION")
@@ -42,6 +43,7 @@ class TestSearch(unittest.TestCase):
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0].title, "Straße")
+
 
 if __name__ == "__main__":
     unittest.main()
