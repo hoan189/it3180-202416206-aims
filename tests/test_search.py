@@ -16,5 +16,32 @@ class TestSearch(unittest.TestCase):
         self.assertEqual(result[0].title, "The Lion King")
 
 
+    def test_search_by_title_uppercase(self):
+        result = search_by_title(self.dvds, "LION")
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].title, "The Lion King")
+
+    def test_search_by_title_mixed_case(self):
+        result = search_by_title(self.dvds, "LiOn")
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].title, "The Lion King")
+
+    def test_search_by_title_not_found(self):
+        result = search_by_title(self.dvds, "Avatar")
+
+        self.assertEqual(len(result), 0)
+
+    def test_search_by_title_unicode_casefold(self):
+        dvds = [
+            DigitalVideoDisc("Straße", "Drama", "Director", 100, 10)
+        ]
+
+        result = search_by_title(dvds, "STRASSE")
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].title, "Straße")
+
 if __name__ == "__main__":
     unittest.main()
