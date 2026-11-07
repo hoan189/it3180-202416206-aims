@@ -33,3 +33,9 @@ class Cart:
 
         for item in self.items:
             print(item)
+            
+    def total_cost_after_discount(self, percent):
+        if percent < 0 or percent > 100:
+            raise ValueError("Invalid discount percentage")
+
+        return self.total_cost() * (100 - percent) / 100
